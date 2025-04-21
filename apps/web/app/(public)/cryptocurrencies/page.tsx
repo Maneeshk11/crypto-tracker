@@ -21,29 +21,12 @@ import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@workspace/ui/components/dialog";
 import PriceChart from "@/components/PriceChart";
-const currencyNameFormatter = (name: string, symbol: string, logo: string) => {
-  return (
-    <span className="flex items-center gap-4">
-      <Image
-        src={logo}
-        alt={name}
-        width={20}
-        height={20}
-        className="w-6 h-6 rounded-full"
-      />
-      <span className="text-sm font-medium">
-        {name} {" . "}
-        <span className="text-xs text-muted-foreground">{symbol}</span>
-      </span>
-    </span>
-  );
-};
+import { currencyNameFormatter } from "@/utils/components";
 
 const currencyValueFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",

@@ -1,14 +1,14 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
 import Link from "next/link";
-import { ReceiptCent, LayoutTemplate } from "lucide-react";
+import { ReceiptCent, LayoutTemplate, User, ChartArea } from "lucide-react";
+
 export function AppSidebar() {
   return (
     <Sidebar>
@@ -34,9 +34,26 @@ export function AppSidebar() {
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
+
+          <SidebarMenuItem>
+            <SidebarMenuButton className="w-[90%] mx-auto" asChild>
+              <Link href="/profile">
+                <User className="size-4" />
+                <span>Profile</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
+          <SidebarMenuItem>
+            <SidebarMenuButton className="w-[90%] mx-auto" asChild>
+              <Link href="/address-analyzer">
+                <ChartArea className="size-4" />
+                <span>Address Analyzer</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   );
 }

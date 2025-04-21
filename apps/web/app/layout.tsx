@@ -1,6 +1,7 @@
 import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import { AppSidebar } from "@/components/Sidebar";
+import { Toaster } from "@workspace/ui/components/sonner";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,6 +13,7 @@ export default function RootLayout({
         <Providers>
           <AppSidebar />
           <div className="p-4 w-full">{children}</div>
+          <Toaster />
         </Providers>
       </body>
     </html>
