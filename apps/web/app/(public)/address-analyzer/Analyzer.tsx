@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AddressSearch from "./AddressSearch";
 import { SearchStatus } from "@/types/enums";
-import { ChartArea, Copy, Loader2 } from "lucide-react";
+import { ChartArea, Copy, ExternalLink, Loader2 } from "lucide-react";
 import Overview from "./Overview";
 import {
   Tabs,
@@ -13,6 +13,7 @@ import {
 } from "@workspace/ui/components/tabs";
 import Transactions from "./Transactions";
 import Assets from "./Assets";
+import Link from "next/link";
 
 const Analyzer = () => {
   const onSearch = (address: string) => {
@@ -64,6 +65,13 @@ const Analyzer = () => {
                 }}
                 className="size-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors"
               />
+              <Link
+                href={`https://etherscan.io/address/${text}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="size-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors" />
+              </Link>
             </div>
           </div>
 

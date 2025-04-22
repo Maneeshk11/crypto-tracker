@@ -50,6 +50,7 @@ export type Asset = {
   value?: string;
   logo?: string;
   price?: string;
+  balance_eth?: string;
 };
 
 // export Token NativeETH = {

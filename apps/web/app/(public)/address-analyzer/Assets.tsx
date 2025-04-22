@@ -31,8 +31,43 @@ const Assets: FC<props> = ({ address }) => {
     queryKey: ["assets", address],
     queryFn: () => getTokenBalances(address),
   });
+
+  const totalNetWorth =
+    data?.reduce((acc, token) => {
+      const value = parseFloat(token.value || "0");
+      return acc + (isNaN(value) ? 0 : value);
+    }, 0) || 0;
+
+  const totalEthBalance =
+    data?.reduce((acc, token) => {
+      const balance = parseFloat(token.balance_eth || "0");
+      return acc + (isNaN(balance) ? 0 : balance);
+    }, 0) || 0;
+
   return (
-    <div>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="flex flex-col gap-2">
+          <span className="text-sm font-medium text-gray-500">
+            Net worth in USD
+          </span>
+          <span className="text-2xl font-mono font-medium text-gray-900">
+            {totalNetWorth.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </span>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <span className="text-sm font-medium text-gray-500">
+            Net worth in ETH
+          </span>
+          <span className="text-2xl font-mono font-medium text-gray-900">
+            {totalEthBalance.toFixed(6)} ETH
+          </span>
+        </div>
+      </div>
       {isPending ? (
         <div className="flex items-center justify-center py-8">
           <Loader2 className="w-6 h-6 animate-spin text-primary" />
@@ -82,9 +117,9 @@ const Assets: FC<props> = ({ address }) => {
                     </Tooltip>
                   </TooltipProvider>
                 </TableCell>
-                <TableCell className="text-right">{token.price}</TableCell>
+                <TableCell className="text-right">${token.price}</TableCell>
                 <TableCell className="text-right">{token.balance}</TableCell>
-                <TableCell className="text-right">{token.value}</TableCell>
+                <TableCell className="text-right">${token.value}</TableCell>
               </TableRow>
             ))}
           </TableBody>
